@@ -60,7 +60,7 @@ Prompt the user to input if that command is success or not(this is the main func
 Note: t = success, others = fail  
 t: 成功, 其他: 失败
 
-## Example:
+## Example 1(IF):
 pseudocode:
 ```
 if:
@@ -123,4 +123,33 @@ mark if_3
 non-auto:say u are here
 mark if_3_else
 non-auto:say who is here
+```
+## Example 2(Event)
+Execute the commands in 'do' when the commands in 'when' success for the **First Time**  
+When the commands in 'when' fails, it would reset the 'do' part, and prepare for executing those commands when the commands in 'when' success again
+
+I am bad at english, so i'll just give an example.
+
+For the following example, it would say someone here when someone enters the r=3 area, but it would not say 'someone here' repeatedly.
+Instead, it would wait until the player left that range, and say it when the player re-enter that range.
+
+pseudocode
+```
+when:
+    testfor @a[r=3]
+do:
+    say someone here
+```
+commands
+```
+enable do_1_reset
+disable do_1
+testfor @a[r=3]
+cond:disable do_1_reset
+cond:enable do_1 on
+cond:tag @e[type=marker,name=do_1] remove on
+mark do_1_reset
+non-auto:tag @e[type=marker,name=do_1] add on
+mark do_1 on
+non-auto:say someone here
 ```
