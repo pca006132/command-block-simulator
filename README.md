@@ -64,65 +64,61 @@ t: 成功, 其他: 失败
 pseudocode:
 ```
 if:
-    testfor 1
+    testfor pca
     or
-    testfor 2
+    testfor pcb
 then:
-    say 1/2 success
+    say 1
     if:
         testfor @a[r=5]
     then:
-        say people around here
+        say 2
     else:
-        say no people here
+        say 3
 else:
     if:
-        testfor u
+        testfor pcc
     then:
-        say u are here
+        say 4
     else:
-        say who is here
+        say 5
 ```
 commands:
 ```
-disable if_1
-enable if_1_else
-testfor 1
-cond:disable if_1_else
-cond:enable if_1
-testfor 2
-cond:disable if_1_else
-cond:enable if_1
-mark if_1
-non-auto:say 1/2 success
-mark if_1
-non-auto:disable if_2
-mark if_1
-non-auto:enable if_2_else
-mark if_1
+disable x if_1
+enable x if_1_else
+testfor pca
+cond:disable x if_1_else
+cond:enable x if_1
+testfor pcb
+cond:disable x if_1_else
+cond:enable x if_1
+mark x if_1
+non-auto:say 1
+mark x if_1
+non-auto:disable x if_2
+mark x if_1
 non-auto:testfor @a[r=5]
-mark if_1
-non-auto:cond:disable if_2_else
-mark if_1
-non-auto:cond:enable if_2
-mark if_2
-non-auto:say people around here
-mark if_2_else
-non-auto:say no people here
-mark if_1_else
-non-auto:disable if_3
-mark if_1_else
-non-auto:enable if_3_else
-mark if_1_else
-non-auto:testfor u
-mark if_1_else
-non-auto:cond:disable if_3_else
-mark if_1_else
-non-auto:cond:enable if_3
-mark if_3
-non-auto:say u are here
-mark if_3_else
-non-auto:say who is here
+mark x if_1
+non-auto:cond:disable x if_2_else
+mark x if_1
+non-auto:cond:enable x if_2
+mark x if_1 if_2
+non-auto:say 2
+mark x if_1 if_2_else
+non-auto:say 3
+mark x if_1_else
+non-auto:disable x if_3
+mark x if_1_else
+non-auto:testfor pcc
+mark x if_1_else
+non-auto:cond:disable x if_3_else
+mark x if_1_else
+non-auto:cond:enable x if_3
+mark x if_1_else if_3
+non-auto:say 4
+mark x if_1_else if_3_else
+non-auto:say 5
 ```
 ## Example 2(Event)
 Execute the commands in 'do' when the commands in 'when' success for the **First Time**  
